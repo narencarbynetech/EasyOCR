@@ -36,7 +36,7 @@ class Batch_Balanced_Dataset(object):
         For example, when select_data is "MJ-ST" and batch_ratio is "0.5-0.5",
         the 50% of the batch is filled with MJ and the other 50% of the batch is filled with ST.
         """
-        log = open(f'./saved_models/{opt.experiment_name}/log_dataset.txt', 'a')
+        log = open(f'EasyOCR/trainer/saved_models/{opt.experiment_name}/log_dataset.txt', 'a')
         dashed_line = '-' * 80
         print(dashed_line)
         log.write(dashed_line + '\n')
@@ -146,7 +146,7 @@ class OCRDataset(Dataset):
         self.root = root
         self.opt = opt
         print(root)
-        self.df = pd.read_csv(os.path.join(root,'labels.csv'), sep='^([^,]+),', engine='python', usecols=['filename', 'words'], keep_default_na=False)
+        self.df = pd.read_csv(os.path.join(root,'labels.csv'), keep_default_na=False)
         self.nSamples = len(self.df)
 
         if self.opt.data_filtering_off:
